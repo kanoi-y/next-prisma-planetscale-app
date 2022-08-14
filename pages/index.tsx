@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 const Home: NextPage = () => {
   useEffect(() => {
-    fetch('/api/authors')
+    fetch('/api/books')
       .then((res) => res.json())
       .then(console.log);
   }, []);
