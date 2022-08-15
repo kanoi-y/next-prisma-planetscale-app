@@ -6,3 +6,5 @@ type Author = Author;
 type User = User;
 
 type BookWithAuthor = Book & { author: Author };
+
+type CartItem = BookWithAuthor & { quantity: number };

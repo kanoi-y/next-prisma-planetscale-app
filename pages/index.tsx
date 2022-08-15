@@ -3,9 +3,11 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useBooks } from '../src/hooks/api/useBooks';
+import { useCart } from '../src/hooks/useCart';
 
 const Home: NextPage = () => {
   const router = useRouter();
+  const { cart, addCart, totalQuantity } = useCart();
   const { data: books, isLoading } = useBooks();
 
   const purchaseBook = async (priceId: string | null) => {
@@ -31,6 +33,9 @@ const Home: NextPage = () => {
     <div>
       <header className='px-8 py-4 shadow-md flex justify-between'>
         <h1>Book nob</h1>
+        <Button onClick={() => router.push('/cart')}>
+          Cart (4)
+        </Button>
       </header>
 
       <div>
@@ -65,6 +70,14 @@ const Home: NextPage = () => {
                       onClick={() => purchaseBook(book.stripe_price_id)}
                     >
                       Buy now
+                    </Button>
+                    <Button
+                      variant='light'
+                      color='blue'
+                      fullWidth
+                      onClick={() => addCart(book)}
+                    >
+                      Add a cart
                     </Button>
                   </div>
                 </Card>
